@@ -8,12 +8,10 @@ void RPN::calculate(const std::string& expr)
 
     while (ss >> token)
     {
-        // number
         if (isdigit(token[0]))
         {
             _stack.push(atoi(token.c_str()));
         }
-        // operator
         else if (token == "+" || token == "-" ||
                  token == "*" || token == "/")
         {
