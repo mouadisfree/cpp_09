@@ -6,7 +6,7 @@ void BitcoinExchange::loadDatabase(const std::string& file)
 
     if (!in)
     {
-        std::cerr << "Error: could not open database." << std::endl;
+        std::cerr << "Error: could not open data.csv" << std::endl;
         exit(1);
     }
 
@@ -80,9 +80,6 @@ double BitcoinExchange::getRate(const std::string& date)
     if (it != _db.end() && it->first == date)
         return it->second;
 
-    if (it == _db.begin())
-        return it->second;
-
     --it;
 
     return it->second;
@@ -109,14 +106,14 @@ void BitcoinExchange::processInput(const std::string& file)
         std::string date;
         std::string value;
 
-        if (!getline(ss, date, '|') || !getline(ss, value))
+        if (!getline(ss, date, '|') || !getline(ss, value)) // !
         {
             std::cerr << "Error: bad input => " << line << std::endl;
             continue;
         }
 
-        while (date[0] == ' ')
-            date.erase(0, 1);
+        // while (date[0] == ' ')
+        //     date.erase(0, 1);
 
         while (date[date.size() - 1] == ' ')
             date.erase(date.size() - 1);
@@ -124,8 +121,8 @@ void BitcoinExchange::processInput(const std::string& file)
         while (value[0] == ' ')
             value.erase(0, 1);
 
-        while (value[value.size() - 1] == ' ')
-            value.erase(value.size() - 1);
+        // while (value[value.size() - 1] == ' ')
+        //     value.erase(value.size() - 1);
 
         if (!validDate(date))
         {
