@@ -112,17 +112,11 @@ void BitcoinExchange::processInput(const std::string& file)
             continue;
         }
 
-        // while (date[0] == ' ')
-        //     date.erase(0, 1);
-
         while (date[date.size() - 1] == ' ')
             date.erase(date.size() - 1);
 
         while (value[0] == ' ')
             value.erase(0, 1);
-
-        // while (value[value.size() - 1] == ' ')
-        //     value.erase(value.size() - 1);
 
         if (!validDate(date))
         {
